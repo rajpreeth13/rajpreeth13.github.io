@@ -72,7 +72,7 @@
 </head>
 <body>
     <center>
-    <h2>IFET ECE GPA Calculator(III SEM)</h2>
+    <h2>IFET ECE GPA Calculator(IV SEM)</h2>
     <hr>
 <table>
   <thead>
@@ -129,17 +129,17 @@
     <center>
     <div class="subjects">
         
-        <label for="A">M3:</label> <input type="number" id="A" value="0">
-        <label for="B">Digital Electronics:</label> <input type="number" id="B" value="0">
-        <label for="C">Electronic Circuits:</label> <input type="number" id="C" value="0">
-        <label for="D">Signals and Systems:</label> <input type="number" id="D" value="0">
-        <label for="E">Analog Communication:</label> <input type="number" id="E" value="0">
-        <label for="F">Fundamentals of Data Structure:</label> <input type="number" id="F" value="0">
-        <label for="G">DS Lab:</label> <input type="number" id="G" value="0">
-        <label for="H">ADC Lab:</label> <input type="number" id="H" value="0">
+        <label for="A">EMF</label> <input type="number" id="A" value="0">
+        <label for="B">LIC:</label> <input type="number" id="B" value="0">
+        <label for="C">MAMC:</label> <input type="number" id="C" value="0">
+        <label for="D">CS:</label> <input type="number" id="D" value="0">
+        <label for="E">LIC LABORATORY:</label> <input type="number" id="E" value="0">
+        <label for="F">MAMC LABORATORY:</label> <input type="number" id="F" value="0">
+        <label for="G">ENGLISH LANGUAGE TRAINING:</label> <input type="number" id="G" value="0">
+        <label for="H">ANALYTICAL SKILLS II:</label> <input type="number" id="H" value="0">
         <label for="I">PDL:</label> <input type="number" id="I" value="0">
-        <label for="J">Value added course:</label> <input type="number" id="J" value="0">
-        <label for="K">Analytical skills I:</label> <input type="number" id="K" value="0">
+        <label for="J">INTERNSHIP</label> <input type="number" id="J" value="0">
+        
     </div>
     </center>
     <button onclick="calcGPA()">Calculate GPA</button>
@@ -162,19 +162,19 @@
 
 <script>
 function calcGPA() {
-    let A = 4 * Number(document.getElementById("A").value);
+    let A = 3 * Number(document.getElementById("A").value);
     let B = 3 * Number(document.getElementById("B").value);
     let C = 3 * Number(document.getElementById("C").value);
     let D = 3 * Number(document.getElementById("D").value);
-    let E = 3 * Number(document.getElementById("E").value);
-    let F = 3 * Number(document.getElementById("F").value);
+    let E = 1.5 * Number(document.getElementById("E").value);
+    let F = 1.5* Number(document.getElementById("F").value);
     let G = 1.5 * Number(document.getElementById("G").value);
-    let H = 1.5 * Number(document.getElementById("H").value);
-    let I = 1 * Number(document.getElementById("I").value);
+    let H = 1 * Number(document.getElementById("H").value);
+    let I = 2 * Number(document.getElementById("I").value);
     let J = 1 * Number(document.getElementById("J").value);
-    let K = 1 * Number(document.getElementById("K").value);
+    
     let total = A + B + C + D + E + F + G + H + I+J+K;
-    let gpa = total / 25;  // total credits = 25
+    let gpa = total / 20.5;  // total credits = 25
 
     document.getElementById("gpaResult").innerHTML = "GPA = " + gpa.toFixed(2);
 }
