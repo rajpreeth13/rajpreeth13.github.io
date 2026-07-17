@@ -149,7 +149,9 @@
 
     <hr>
     <h3>CGPA</h3>
-    <input type="number" id="Old" placeholder="Old CGPA">
+    <input type="number" id="1" placeholder="1 semester">
+    <input type="number" id="2" placeholder="2 semester">
+    <input type="number" id="3" placeholder="3 semester">
     <input type="number" id="New" placeholder="Latest GPA">
     <button onclick="calcCGPA2()">Calculate CGPA</button>
     <h3 id="cgpa2Result"></h3>
@@ -189,10 +191,12 @@ function calcGPA() {
 }
 
 function calcCGPA2() {
-    const old = Number(document.getElementById("Old").value);
+    const 1sem = Number(document.getElementById("1").value);
+    const 2sem = Number(document.getElementById("2").value);
+    const 3sem = Number(document.getElementById("3").value);
     const newg = Number(document.getElementById("New").value);
 
-    const cgpa = (old + newg) / 2;
+    const cgpa = (1sem + 2sem + 3sem + newg) / 4;
     document.getElementById("cgpa2Result").textContent = "CGPA (4th SEM) = " + cgpa.toFixed(2);
 }
 </script>
