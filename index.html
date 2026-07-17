@@ -145,44 +145,55 @@
     <button onclick="calcGPA()">Calculate GPA</button>
     <h3 id="gpaResult"></h3>
 
-    <hr>
+    
 
-
     <hr>
-    <h3>CGPA (Using Last CGPA)</h3>
+    <h3>CGPA</h3>
     <input type="number" id="Old" placeholder="Old CGPA">
     <input type="number" id="New" placeholder="Latest GPA">
     <button onclick="calcCGPA2()">Calculate CGPA</button>
     <h3 id="cgpa2Result"></h3>
 
 <script>
-function calcGPA() {
-    let A = 3 * Number(document.getElementById("A").value);
-    let B = 3 * Number(document.getElementById("B").value);
-    let C = 3 * Number(document.getElementById("C").value);
-    let D = 3 * Number(document.getElementById("D").value);
-    let E = 1.5 * Number(document.getElementById("E").value);
-    let F = 1.5 * Number(document.getElementById("F").value);
-    let G = 1.5 * Number(document.getElementById("G").value);
-    let H = 1 * Number(document.getElementById("H").value);
-    let I = 2 * Number(document.getElementById("I").value);
-    let J = 1 * Number(document.getElementById("J").value);
-    
-    let total = A + B + C + D + E + F + G + H + I+J;
-    let gpa = total / 20.5;  // total credits = 25
-
-    document.getElementById("gpaResult").innerHTML = "GPA = " + gpa.toFixed(2);
+function getGradeValue(id) {
+    const value = Number(document.getElementById(id).value);
+    return Number.isFinite(value) ? value : 0;
 }
 
+function calcGPA() {
+    const credits = {
+        A: 3,
+        B: 3,
+        C: 3,
+        D: 3,
+        E: 1.5,
+        F: 1.5,
+        G: 1.5,
+        H: 1,
+        I: 2,
+        J: 1
+    };
 
+    let total = 0;
+    Object.entries(credits).forEach(([subject, credit]) => {
+        total += credit * getGradeValue(subject);
+    });
+
+    const totalCredits = 20.5;
+    const gpa = total / totalCredits;
+    const gpaValue = gpa.toFixed(2);
+
+    document.getElementById("gpaResult").textContent = "GPA = " + gpaValue;
+    document.getElementById("New").value = gpaValue;
+    return gpaValue;
 }
 
 function calcCGPA2() {
-    let old = Number(document.getElementById("Old").value);
-    let newg = Number(document.getElementById("New").value);
+    const old = Number(document.getElementById("Old").value);
+    const newg = Number(document.getElementById("New").value);
 
-    let cgpa = (old + newg) / 2;
-    document.getElementById("cgpa2Result").innerHTML = "CGPA (2 Sem) = " + cgpa.toFixed(2);
+    const cgpa = (old + newg) / 2;
+    document.getElementById("cgpa2Result").textContent = "CGPA (4th SEM) = " + cgpa.toFixed(2);
 }
 </script>
 </center>
