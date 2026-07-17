@@ -149,20 +149,30 @@
 
     <hr>
     <h3>CGPA</h3>
-    <input type="number" id="1" placeholder="1 semester">
-    <input type="number" id="2" placeholder="2 semester">
-    <input type="number" id="3" placeholder="3 semester">
+    <input type="number" id="sem1" placeholder="1 Semester GPA">
+    <input type="number" id="sem2" placeholder="2 Semester GPA">
+    <input type="number" id="sem3" placeholder="3 Semester GPA">
+    <input type="number" id="New" placeholder="Latest GPA">
     <input type="number" id="New" placeholder="Latest GPA">
     <button onclick="calcCGPA2()">Calculate CGPA</button>
     <h3 id="cgpa2Result"></h3>
 
 <script>
 function getGradeValue(id) {
-    const value = Number(document.getElementById(id).value);
-    return Number.isFinite(value) ? value : 0;
+    let value = parseFloat(document.getElementById(id).value);
+
+    if (isNaN(value))
+        value = 0;
+
+    // Restrict grades between 0 and 10
+    if (value < 0) value = 0;
+    if (value > 10) value = 10;
+
+    return value;
 }
 
 function calcGPA() {
+
     const credits = {
         A: 3,
         B: 3,
@@ -176,28 +186,34 @@ function calcGPA() {
         J: 1
     };
 
-    let total = 0;
-    Object.entries(credits).forEach(([subject, credit]) => {
-        total += credit * getGradeValue(subject);
-    });
+    let totalMarks = 0;
+    let totalCredits = 0;
 
-    const totalCredits = 20.5;
-    const gpa = total / totalCredits;
-    const gpaValue = gpa.toFixed(2);
+    for (let subject in credits) {
+        totalMarks += getGradeValue(subject) * credits[subject];
+        totalCredits += credits[subject];
+    }
 
-    document.getElementById("gpaResult").textContent = "GPA = " + gpaValue;
-    document.getElementById("New").value = gpaValue;
-    return gpaValue;
+    let gpa = totalMarks / totalCredits;
+
+    document.getElementById("gpaResult").innerHTML =
+        "<b>GPA = " + gpa.toFixed(2) + "</b>";
+
+    // Automatically copy GPA into CGPA section
+    document.getElementById("New").value = gpa.toFixed(2);
 }
 
 function calcCGPA2() {
-    const 1sem = Number(document.getElementById("1").value);
-    const 2sem = Number(document.getElementById("2").value);
-    const 3sem = Number(document.getElementById("3").value);
-    const newg = Number(document.getElementById("New").value);
 
-    const cgpa = (1sem + 2sem + 3sem + newg) / 4;
-    document.getElementById("cgpa2Result").textContent = "CGPA (4th SEM) = " + cgpa.toFixed(2);
+    let sem1 = parseFloat(document.getElementById("sem1").value) || 0;
+    let sem2 = parseFloat(document.getElementById("sem2").value) || 0;
+    let sem3 = parseFloat(document.getElementById("sem3").value) || 0;
+    let latest = parseFloat(document.getElementById("New").value) || 0;
+
+    let cgpa = (sem1 + sem2 + sem3 + latest) / 4;
+
+    document.getElementById("cgpa2Result").innerHTML =
+        "<b>CGPA (After 4th Semester) = " + cgpa.toFixed(2) + "</b>";
 }
 </script>
 </center>
