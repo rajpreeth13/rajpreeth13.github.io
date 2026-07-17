@@ -146,12 +146,7 @@
     <h3 id="gpaResult"></h3>
 
     <hr>
-    <h3>CGPA (Using Last 3 GPAs)</h3>
-    <input type="number" id="G1" placeholder="SEM 1 GPA">
-    <input type="number" id="G2" placeholder="SEM 2 GPA">
-    <input type="number" id="G3" placeholder="SEM 3 GPA">
-    <button onclick="calcCGPA3()">Calculate CGPA </button>
-    <h3 id="cgpa3Result"></h3>
+
 
     <hr>
     <h3>CGPA (Using Last CGPA)</h3>
@@ -167,25 +162,19 @@ function calcGPA() {
     let C = 3 * Number(document.getElementById("C").value);
     let D = 3 * Number(document.getElementById("D").value);
     let E = 1.5 * Number(document.getElementById("E").value);
-    let F = 1.5* Number(document.getElementById("F").value);
+    let F = 1.5 * Number(document.getElementById("F").value);
     let G = 1.5 * Number(document.getElementById("G").value);
     let H = 1 * Number(document.getElementById("H").value);
     let I = 2 * Number(document.getElementById("I").value);
     let J = 1 * Number(document.getElementById("J").value);
     
-    let total = A + B + C + D + E + F + G + H + I+J+K;
+    let total = A + B + C + D + E + F + G + H + I+J;
     let gpa = total / 20.5;  // total credits = 25
 
     document.getElementById("gpaResult").innerHTML = "GPA = " + gpa.toFixed(2);
 }
 
-function calcCGPA3() {
-    let g1 = Number(document.getElementById("G1").value);
-    let g2 = Number(document.getElementById("G2").value);
-    let g3 = Number(document.getElementById("G3").value);
 
-    let cgpa = (g1 + g2 + g3) / 3;
-    document.getElementById("cgpa3Result").innerHTML = "CGPA (3 Sem) = " + cgpa.toFixed(2);
 }
 
 function calcCGPA2() {
